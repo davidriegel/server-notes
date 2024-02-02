@@ -47,7 +47,7 @@ def removeNote(title: str):
     for existing_note in data['notes']:
         if existing_note['title'] == title:
             data['notes'].remove(existing_note)
-            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json', 'w'))
+            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'), 'w')
             json.dump(data, json_data)
             json_data.close()
             
@@ -95,7 +95,7 @@ def updateNote(title: str, note: str):
         if existing_note['title'] == title:
             existing_note['note'] = note
             existing_note['updatedAt'] = now()
-            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json', 'w'))
+            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'), 'w')
             json.dump(data, json_data)
             json_data.close()
             
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
         json_data.close()
     except FileNotFoundError:
-        createJSON = open('notes.json', 'w')
+        createJSON = open(os.path.join(os.path.dirname(__file__), 'notes.json'), 'w')
         createJSON.write('{"notes": []}')
         createJSON.close()
     
