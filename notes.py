@@ -1,6 +1,7 @@
 import sys
 import json
 import time
+import os
 
 class printColors:
     HEADER = '\033[95m'
@@ -17,7 +18,7 @@ def now() -> str:
     return time.strftime("%d/%m/%Y %H:%M:%S", time.localtime())
     
 def createNote(title: str, note: str):
-    json_data = open('notes.json')
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
     
@@ -32,21 +33,21 @@ def createNote(title: str, note: str):
         'note': note
     })
     
-    json_data = open('notes.json', 'w')
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'), 'w')
     json.dump(data, json_data)
     json_data.close()
     
     return print(f"{printColors.OKGREEN}Note created{printColors.ENDC}")
 
 def removeNote(title: str):
-    json_data = open('notes.json')
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
     
     for existing_note in data['notes']:
         if existing_note['title'] == title:
             data['notes'].remove(existing_note)
-            json_data = open('notes.json', 'w')
+            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json', 'w'))
             json.dump(data, json_data)
             json_data.close()
             
@@ -59,7 +60,8 @@ def showNote(title: str):
     if title == '':
         return showAllNotes()
 
-    json_data = open('notes.json')
+    # make this json file path dynamic so it can be used from any os
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
     
@@ -71,7 +73,7 @@ def showNote(title: str):
 
         
 def showAllNotes():
-    json_data = open('notes.json')
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
         
@@ -85,7 +87,7 @@ def showAllNotes():
     return print(notes)
 
 def updateNote(title: str, note: str):
-    json_data = open('notes.json')
+    json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
     
@@ -93,7 +95,7 @@ def updateNote(title: str, note: str):
         if existing_note['title'] == title:
             existing_note['note'] = note
             existing_note['updatedAt'] = now()
-            json_data = open('notes.json', 'w')
+            json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json', 'w'))
             json.dump(data, json_data)
             json_data.close()
             
@@ -103,7 +105,7 @@ def updateNote(title: str, note: str):
 
 if __name__ == '__main__':
     try:
-        json_data = open('notes.json')
+        json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
         json_data.close()
     except FileNotFoundError:
         createJSON = open('notes.json', 'w')
