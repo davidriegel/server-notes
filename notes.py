@@ -65,7 +65,7 @@ def showNote(title: str):
     
     for note in data['notes']:
         if note['title'] == title:
-            return print(f"{printColors.BOLD}{printColors.HEADER}Showing note: {printColors.UNDERLINE}{title}{printColors.ENDC}\n{printColors.OKCYAN}Created at: {note['createdAt']}{printColors.ENDC}\n{printColors.WARNING}Last update: {note["updatedAt"]}{printColors.ENDC}\n\n{printColors.OKGREEN}{note['note']}{printColors.ENDC}")
+            return print(f"{printColors.BOLD}{printColors.HEADER}Showing note: {printColors.UNDERLINE}{title}{printColors.ENDC}\n{printColors.OKCYAN}Created at: {note['createdAt']}{printColors.ENDC}\n{printColors.WARNING}Last update: {note['updatedAt']}{printColors.ENDC}\n\n{printColors.OKGREEN}{note['note']}{printColors.ENDC}")
         
     return print(f"{printColors.FAIL}Note not found{printColors.ENDC}")
 
