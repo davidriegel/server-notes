@@ -60,7 +60,6 @@ def showNote(title: str):
     if title == '':
         return showAllNotes()
 
-    # make this json file path dynamic so it can be used from any os
     json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
     data = json.load(json_data)
     json_data.close()
@@ -103,6 +102,9 @@ def updateNote(title: str, note: str):
     
     return print(f"{printColors.FAIL}Note not found{printColors.ENDC}")
 
+def showHelpMenu():
+    return print(f"{printColors.HEADER}{printColors.UNDERLINE}{printColors.BOLD}This project is only here to take notes or quick thoughts from the CMD for later :){printColors.ENDC}\n{printColors.BOLD}I may add a UI at a later date{printColors.ENDC}\n\n{printColors.OKCYAN}py notes.py help {printColors.ENDC}| Shows you this menu.\n{printColors.OKCYAN}py add <title> <note> {printColors.ENDC}| Create a new note\n{printColors.OKCYAN}py remove <title> {printColors.ENDC}| Delete notes\n{printColors.OKCYAN}py show {printColors.ENDC}| Overview of all notes\n{printColors.OKCYAN}py show <title> {printColors.ENDC}| Show note information{printColors.ENDC}")
+
 if __name__ == '__main__':
     try:
         json_data = open(os.path.join(os.path.dirname(__file__), 'notes.json'))
@@ -113,7 +115,7 @@ if __name__ == '__main__':
         createJSON.close()
     
     if len(sys.argv) < 2:
-        print('Usage: py notes.py <add|remove|show|update> <title> <optional:note>')
+        print('Usage: py notes.py <help|add|remove|show|update> <title> <optional:note>')
         sys.exit(1)
         
     action = sys.argv[1]
@@ -136,6 +138,8 @@ if __name__ == '__main__':
         showNote(title=title)
     elif action == 'update':
         updateNote(title=title, note=note)
+    elif action == 'help':
+        showHelpMenu()
     else:
         print('Unknown action: ' + action)
         sys.exit(1)
