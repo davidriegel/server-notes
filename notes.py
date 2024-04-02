@@ -103,7 +103,7 @@ def updateNote(title: str, note: str):
     return print(f"{printColors.FAIL}Note not found{printColors.ENDC}")
 
 def showHelpMenu():
-    return print(f"{printColors.HEADER}{printColors.UNDERLINE}{printColors.BOLD}This project is only here to take notes or quick thoughts from the CMD for later :){printColors.ENDC}\n{printColors.BOLD}I may add a UI at a later date{printColors.ENDC}\n\n{printColors.OKCYAN}py notes.py help {printColors.ENDC}| Shows you this menu.\n{printColors.OKCYAN}py add <title> <note> {printColors.ENDC}| Create a new note\n{printColors.OKCYAN}py remove <title> {printColors.ENDC}| Delete notes\n{printColors.OKCYAN}py show {printColors.ENDC}| Overview of all notes\n{printColors.OKCYAN}py show <title> {printColors.ENDC}| Show note information{printColors.ENDC}")
+    return print(f"{printColors.HEADER}{printColors.UNDERLINE}{printColors.BOLD}This project is only here to take notes or quick thoughts from the CMD for later :){printColors.ENDC}\n{printColors.BOLD}I may add a UI at a later date{printColors.ENDC}\n\n{printColors.OKCYAN}py notes.py help {printColors.ENDC}| Shows you this menu.\n{printColors.OKCYAN}py add <title> <note> {printColors.ENDC}| Create a new note\n{printColors.OKCYAN}py remove <title> {printColors.ENDC}| Delete notes\n{printColors.OKCYAN}py update <title> <new note>{printColors.ENDC}| Update note\n{printColors.OKCYAN}py show {printColors.ENDC}| Overview of all notes\n{printColors.OKCYAN}py show <title> {printColors.ENDC}| Show note information{printColors.ENDC}")
 
 if __name__ == '__main__':
     try:
